@@ -20,12 +20,11 @@ class JavaController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/list", name="api_user_list")
+     * @Route("/api/user/list", name="api_user_list", methods={"GET"})
      */
     public function listUsers(UserRepository $userRepository) 
     {
-        $users = $userRepository->findAll();
-
-        return $this->json($users, 200,  [], ['groups' => 'list_users']);
+        //possibilite d'utiliser le serializerInterface avec serialize et retourner une Response de la même chose
+        return $this->json($userRepository->findAll(), 200, [], ['groups' => 'list_users']);
     }
 }
